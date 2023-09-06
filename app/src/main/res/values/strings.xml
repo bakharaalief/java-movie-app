@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Java-Movie-App</string>
+    <string name="movie_app">Movie</string>
+    <string name="movie_poster_description">movie_poster</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="error_text">Error Nih</string>
+    <string name="see_all">See All</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
 </resources>
