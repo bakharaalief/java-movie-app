@@ -1,12 +1,15 @@
 package com.bakhdev.java_movie_app.data;
 
 import com.bakhdev.java_movie_app.BuildConfig;
+import com.bakhdev.java_movie_app.Helper.Mapper;
+import com.bakhdev.java_movie_app.data.response.detail.DetailMovieResponse;
 import com.bakhdev.java_movie_app.data.response.list.ListMovieResponse;
-import com.bakhdev.java_movie_app.data.response.list.ResultsItem;
+import com.bakhdev.java_movie_app.data.response.listCast.ListCastResponse;
+import com.bakhdev.java_movie_app.domain.entity.Cast;
 import com.bakhdev.java_movie_app.domain.entity.Movie;
+import com.bakhdev.java_movie_app.domain.entity.MovieDetail;
 import com.bakhdev.java_movie_app.domain.repository.MovieRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,14 +36,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 .map(new Function<ListMovieResponse, List<Movie>>() {
                          @Override
                          public List<Movie> apply(ListMovieResponse listMovieResponse) throws Exception {
-                             ArrayList<Movie> listMovie = new ArrayList<>();
-
-                             for (ResultsItem resultsItem : listMovieResponse.getResults()) {
-                                 Movie movie = new Movie(resultsItem.getId(), resultsItem.getPosterPath());
-                                 listMovie.add(movie);
-                             }
-
-                             return listMovie;
+                             return Mapper.listMovieResponseToListMovie(listMovieResponse);
                          }
                      }
                 );
@@ -54,14 +50,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 .map(new Function<ListMovieResponse, List<Movie>>() {
                          @Override
                          public List<Movie> apply(ListMovieResponse listMovieResponse) throws Exception {
-                             ArrayList<Movie> listMovie = new ArrayList<Movie>();
-
-                             for (ResultsItem resultsItem : listMovieResponse.getResults()) {
-                                 Movie movie = new Movie(resultsItem.getId(), resultsItem.getPosterPath());
-                                 listMovie.add(movie);
-                             }
-
-                             return listMovie;
+                             return Mapper.listMovieResponseToListMovie(listMovieResponse);
                          }
                      }
                 );
@@ -75,16 +64,35 @@ public class MovieRepositoryImpl implements MovieRepository {
                 .map(new Function<ListMovieResponse, List<Movie>>() {
                          @Override
                          public List<Movie> apply(ListMovieResponse listMovieResponse) throws Exception {
-                             ArrayList<Movie> listMovie = new ArrayList<Movie>();
-
-                             for (ResultsItem resultsItem : listMovieResponse.getResults()) {
-                                 Movie movie = new Movie(resultsItem.getId(), resultsItem.getPosterPath());
-                                 listMovie.add(movie);
-                             }
-
-                             return listMovie;
+                             return Mapper.listMovieResponseToListMovie(listMovieResponse);
                          }
                      }
                 );
+    }
+
+    @Override
+    public Observable<MovieDetail> getDetail(int id) {
+        return movieApiService.getDetail(id, BuildConfig.API_KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new Function<DetailMovieResponse, MovieDetail>() {
+                    @Override
+                    public MovieDetail apply(DetailMovieResponse detailMovieResponse) throws Exception {
+                        return Mapper.detailMovieResponseToMovieDetail(detailMovieResponse);
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Cast>> getCasts(int id) {
+        return movieApiService.getCasts(id, BuildConfig.API_KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new Function<ListCastResponse, List<Cast>>() {
+                    @Override
+                    public List<Cast> apply(ListCastResponse listCastResponse) throws Exception {
+                        return Mapper.listCastItemToListCast(listCastResponse.getCast());
+                    }
+                });
     }
 }

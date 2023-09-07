@@ -1,5 +1,6 @@
 package com.bakhdev.java_movie_app.presentation.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,12 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bakhdev.java_movie_app.base.BaseActivity;
 import com.bakhdev.java_movie_app.databinding.ActivityHomeBinding;
+import com.bakhdev.java_movie_app.domain.entity.Movie;
 import com.bakhdev.java_movie_app.presentation.adapter.MovieAdapter;
+import com.bakhdev.java_movie_app.presentation.adapter.OnItemClickListener;
+import com.bakhdev.java_movie_app.presentation.detail.DetailActivity;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
+public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements OnItemClickListener {
 
     private HomeViewModel viewModel;
     private MovieAdapter nowPlayingMovieAdapter;
@@ -39,16 +43,26 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
 
     private void setUpAdapter() {
         nowPlayingMovieAdapter = new MovieAdapter();
+        nowPlayingMovieAdapter.setOnItemClickListener(this);
         binding.rvNowPlayingMovie.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rvNowPlayingMovie.setAdapter(nowPlayingMovieAdapter);
 
         popularMovieAdapter = new MovieAdapter();
+        popularMovieAdapter.setOnItemClickListener(this);
         binding.rvPopularMovie.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rvPopularMovie.setAdapter(popularMovieAdapter);
 
         topRatedMovieAdapter = new MovieAdapter();
+        topRatedMovieAdapter.setOnItemClickListener(this);
         binding.rvTopRatedMovie.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rvTopRatedMovie.setAdapter(topRatedMovieAdapter);
+    }
+
+    @Override
+    public void onItemClick(Movie movie) {
+        Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
+        intent.putExtra(DetailActivity.MOVIE_EXTRA, movie);
+        this.startActivity(intent);
     }
 
     private void setUpViewModel() {

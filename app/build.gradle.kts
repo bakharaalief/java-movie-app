@@ -67,4 +67,6 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxjava:2.2.9")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
