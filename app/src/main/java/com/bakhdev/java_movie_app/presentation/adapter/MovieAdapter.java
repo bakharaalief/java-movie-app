@@ -1,8 +1,8 @@
 package com.bakhdev.java_movie_app.presentation.adapter;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,12 +10,15 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bakhdev.java_movie_app.Helper.Utils;
 import com.bakhdev.java_movie_app.R;
 import com.bakhdev.java_movie_app.databinding.ItemMovieBinding;
 import com.bakhdev.java_movie_app.domain.entity.Movie;
 import com.bumptech.glide.Glide;
 
 public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.ViewHolder> {
+
+    private OnItemClickListener itemListener;
 
     public MovieAdapter() {
         super(MovieDiffCallback);
@@ -34,7 +37,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.ViewHolder> {
         holder.bind(movie);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemMovieBinding binding;
 
         ViewHolder(ItemMovieBinding binding) {
@@ -43,14 +46,25 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.ViewHolder> {
         }
 
         void bind(Movie movie) {
-            String posterPath = "https://image.tmdb.org/t/p/w500";
             Glide
                 .with(itemView.getContext())
-                .load(posterPath + movie.getPosterPath())
+                .load(Utils.linkToShowImage(movie.getPosterPath()))
                 .placeholder(R.drawable.ic_launcher_background)
                 .centerCrop()
                 .into(binding.imgMoviePoster);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (itemListener != null) {
+                        itemListener.onItemClick(movie);
+                    }
+                }
+            });
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemListener) {
+        this.itemListener = itemListener;
     }
 
     private static final DiffUtil.ItemCallback<Movie> MovieDiffCallback = new DiffUtil.ItemCallback<Movie>() {

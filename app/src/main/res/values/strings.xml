@@ -7,4 +7,7 @@
     <string name="see_all">See All</string>
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>
+    <string name="play">Play</string>
+    <string name="overview">Overview</string>
+    <string name="casts">Casts</string>
 </resources>

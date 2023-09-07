@@ -1,6 +1,8 @@
 package com.bakhdev.java_movie_app.domain.usecase;
 
+import com.bakhdev.java_movie_app.domain.entity.Cast;
 import com.bakhdev.java_movie_app.domain.entity.Movie;
+import com.bakhdev.java_movie_app.domain.entity.MovieDetail;
 import com.bakhdev.java_movie_app.domain.repository.MovieRepository;
 
 import java.util.List;
@@ -31,5 +33,15 @@ public class MovieInteract implements MovieUseCase {
     @Override
     public Observable<List<Movie>> getTopRated() {
         return movieRepository.getTopRated();
+    }
+
+    @Override
+    public Observable<MovieDetail> getDetail(int id) {
+        return movieRepository.getDetail(id);
+    }
+
+    @Override
+    public Observable<List<Cast>> getCasts(int id) {
+        return movieRepository.getCasts(id);
     }
 }
