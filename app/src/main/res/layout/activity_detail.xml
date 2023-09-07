@@ -30,6 +30,7 @@
                     android:id="@+id/img_movie_backdrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/movie_backdrop"
                     android:fitsSystemWindows="true"
                     android:foreground="@drawable/gradient_color"
                     android:scaleType="centerCrop"
@@ -47,7 +48,7 @@
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="50dp"
                     android:textAlignment="textStart"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="@+id/img_movie_backdrop"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="20dp"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/img_movie_backdrop"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +75,8 @@
                     android:layout_height="20dp"
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="20dp"
+                    android:theme="@style/ProgressBarTheme"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/img_movie_backdrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -85,6 +89,7 @@
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="20dp"
                     android:text="@string/error_text"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/img_movie_backdrop"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -114,12 +119,12 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorSecondary"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btn_play"
@@ -130,20 +135,14 @@
                 android:layout_marginTop="18dp"
                 android:text="@string/play"
                 android:textColor="@color/black"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_overview"
-                style="@style/TextBoldTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="18dp"
+                style="@style/TextBoldTypeOneTheme"
                 android:text="@string/overview"
-                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_play" />
 
@@ -153,8 +152,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="18dp"
                 android:justificationMode="inter_word"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -163,13 +163,8 @@
 
             <TextView
                 android:id="@+id/tv_cast"
-                style="@style/TextBoldTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="18dp"
+                style="@style/TextBoldTypeOneTheme"
                 android:text="@string/casts"
-                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_overview_detail" />
 
@@ -184,6 +179,7 @@
 
             <ProgressBar
                 android:id="@+id/progress_cast"
+                style="@style/ProgressBarTheme"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="18dp"
@@ -194,16 +190,11 @@
 
             <TextView
                 android:id="@+id/tv_error_cast"
-                style="@style/TextLightTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="15dp"
-                android:textSize="18sp"
+                style="@style/TextErrorTheme"
+                android:text="@string/error_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_cast"
-                tools:text="@string/error_text" />
+                app:layout_constraintTop_toBottomOf="@id/tv_cast" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

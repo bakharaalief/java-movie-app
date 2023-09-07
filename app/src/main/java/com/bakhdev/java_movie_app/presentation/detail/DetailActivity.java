@@ -61,11 +61,7 @@ public class DetailActivity extends BaseActivity<ActivityDetailBinding> {
             binding.topAppBar.setTitle(movie.getTitle());
             binding.tvMovieTitle.setText(movie.getTitle());
 
-            Glide.with(this)
-                    .load(Utils.linkToShowImage(movie.getBackdropPath()))
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .centerCrop()
-                    .into(binding.imgMovieBackdrop);
+            Glide.with(this).load(Utils.linkToShowImage(movie.getBackdropPath())).placeholder(R.color.yellow).centerCrop().into(binding.imgMovieBackdrop);
         }
     }
 
@@ -121,8 +117,7 @@ public class DetailActivity extends BaseActivity<ActivityDetailBinding> {
         binding.btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = new Toast(DetailActivity.this);
-                toast.setText("Ini Hanya dummy");
+                Toast toast = Toast.makeText(DetailActivity.this, "Just Dummy", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });

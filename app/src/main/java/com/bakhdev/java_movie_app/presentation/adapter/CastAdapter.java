@@ -46,11 +46,11 @@ public class CastAdapter extends ListAdapter<Cast, CastAdapter.ViewHolder> {
             binding.tvCastName.setText(cast.getName());
             binding.tvCastCharacter.setText(cast.getCharacter());
             Glide
-                    .with(itemView.getContext())
-                    .load(Utils.linkToShowImage(cast.getProfilePath()))
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .centerCrop()
-                    .into(binding.imgCastPhoto);
+                .with(itemView.getContext())
+                .load(Utils.linkToShowImage(cast.getProfilePath()))
+                .placeholder(R.color.yellow)
+                .centerCrop()
+                .into(binding.imgCastPhoto);
         }
     }
 
