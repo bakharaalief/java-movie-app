@@ -2,7 +2,7 @@
 Indivara Android Developer Technical Test<br>
 
 ## Video preview
-[youtube](https://youtube.com/shorts/TcQ09SKIw1I?feature=share)
+[youtube](https://youtube.com/shorts/cOJkIzZsrLM?feature=share)
 
 ## Feature
 - See Now Playing, Popular, and Top Rated movies
