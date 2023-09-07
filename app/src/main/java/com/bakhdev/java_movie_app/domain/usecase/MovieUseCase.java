@@ -10,13 +10,13 @@ import io.reactivex.Observable;
 
 public interface MovieUseCase {
 
-    abstract Observable<List<Movie>> getNowPlaying();
+    Observable<List<Movie>> getNowPlaying();
 
-    abstract Observable<List<Movie>> getPopular();
+    Observable<List<Movie>> getPopular();
 
-    abstract Observable<List<Movie>> getTopRated();
+    Observable<List<Movie>> getTopRated();
 
-    abstract Observable<MovieDetail> getDetail(int id);
+    Observable<MovieDetail> getDetail(int id);
 
-    abstract Observable<List<Cast>> getCasts(int id);
+    Observable<List<Cast>> getCasts(int id);
 }

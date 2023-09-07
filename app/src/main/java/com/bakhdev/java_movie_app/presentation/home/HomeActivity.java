@@ -3,10 +3,12 @@ package com.bakhdev.java_movie_app.presentation.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bakhdev.java_movie_app.R;
 import com.bakhdev.java_movie_app.base.BaseActivity;
 import com.bakhdev.java_movie_app.databinding.ActivityHomeBinding;
 import com.bakhdev.java_movie_app.domain.entity.Movie;
@@ -17,7 +19,7 @@ import com.bakhdev.java_movie_app.presentation.detail.DetailActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements OnItemClickListener {
+public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements OnItemClickListener, View.OnClickListener {
 
     private HomeViewModel viewModel;
     private MovieAdapter nowPlayingMovieAdapter;
@@ -34,6 +36,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements O
         setUpPopularMovie();
         setUpTopRatedMovie();
         getMovieData();
+        setUpSeeAllClick();
     }
 
     @Override
@@ -82,7 +85,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements O
         viewModel.getIsErrorNowPlayingMovie().observe(this, isError -> {
             if (isError) {
                 binding.tvErrorNowPlayingMovie.setVisibility(View.VISIBLE);
-                binding.rvNowPlayingMovie.setVisibility(View.GONE);
+                binding.rvNowPlayingMovie.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -104,7 +107,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements O
         viewModel.getIsErrorPopularMovie().observe(this, isError -> {
             if (isError) {
                 binding.tvErrorPopularMovie.setVisibility(View.VISIBLE);
-                binding.rvPopularMovie.setVisibility(View.GONE);
+                binding.rvPopularMovie.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -126,7 +129,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements O
         viewModel.getIsErrorTopRatedMovie().observe(this, isError -> {
             if (isError) {
                 binding.tvErrorTopRatedMovie.setVisibility(View.VISIBLE);
-                binding.rvTopRatedMovie.setVisibility(View.GONE);
+                binding.rvTopRatedMovie.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -139,5 +142,27 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements O
         viewModel.getNowPlayingMovieData();
         viewModel.getPopularMovieData();
         viewModel.getTopRatedMovieData();
+    }
+
+    private void setUpSeeAllClick() {
+        binding.tvNowPlayingMovieSeeAll.setOnClickListener(this);
+        binding.tvPopularMovieSeeAll.setOnClickListener(this);
+        binding.tvTopRatedMovieSeeAll.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        String toastText;
+
+        if (view.getId() == R.id.tv_now_playing_movie_see_all) {
+            toastText = "Now Playing Movie";
+        } else if (view.getId() == R.id.tv_popular_movie_see_all) {
+            toastText = "Popular Movie";
+        } else {
+            toastText = "Top Rated Movie";
+        }
+
+        Toast toast = Toast.makeText(this, toastText, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

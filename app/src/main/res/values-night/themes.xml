@@ -1,7 +1,65 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.JavaMovieApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/brown</item>
     </style>
+
+    <style name="Theme.JavaMovieApp" parent="Base.Theme.JavaMovieApp" />
+
+    <style name="TextBoldTheme">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextBoldTypeOneTheme" parent="TextBoldTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">18dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextLightTheme">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextLightTypeOneTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">18dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextErrorTheme" parent="TextLightTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginHorizontal">18dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ProgressBarTheme">
+        <item name="android:indeterminateTint">@color/yellow</item>
+    </style>
+
+    <style name="ProgressBarTypeOneTheme" parent="ProgressBarTheme">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">225dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+    </style>
+
+    <style name="RecyclerViewTypeOneTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:minHeight">225dp</item>
+    </style>
+
 </resources>

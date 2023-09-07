@@ -49,7 +49,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.ViewHolder> {
             Glide
                 .with(itemView.getContext())
                 .load(Utils.linkToShowImage(movie.getPosterPath()))
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.color.yellow)
                 .centerCrop()
                 .into(binding.imgMoviePoster);
             itemView.setOnClickListener(new View.OnClickListener() {

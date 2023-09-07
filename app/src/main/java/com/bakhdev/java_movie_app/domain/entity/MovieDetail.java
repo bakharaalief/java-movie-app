@@ -1,7 +1,5 @@
 package com.bakhdev.java_movie_app.domain.entity;
 
-import com.bakhdev.java_movie_app.data.response.detail.GenresItem;
-
 import java.util.List;
 
 public class MovieDetail {
@@ -10,7 +8,7 @@ public class MovieDetail {
     private String releaseDate;
     private List<MovieGenre> genres;
 
-    public MovieDetail(int runtime, String releaseDate, List<MovieGenre> genres){
+    public MovieDetail(int runtime, String releaseDate, List<MovieGenre> genres) {
         this.runtime = runtime;
         this.releaseDate = releaseDate;
         this.genres = genres;

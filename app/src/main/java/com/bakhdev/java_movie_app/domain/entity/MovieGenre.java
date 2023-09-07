@@ -2,7 +2,7 @@ package com.bakhdev.java_movie_app.domain.entity;
 
 public class MovieGenre {
     private String name;
-    private int id;
+    private final int id;
 
     public MovieGenre(String name, int id) {
         this.name = name;
